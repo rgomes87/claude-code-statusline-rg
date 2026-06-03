@@ -22,7 +22,7 @@ Tip: type /rg-statusline-help for more info
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rgomes87/claude-code-statusline-rg/main/install.sh | bash
+curl -fsSL https://rgomes87.github.io/claude-code-statusline-rg/install.sh | bash
 ```
 
 Then restart Claude Code. The statusline appears immediately.
@@ -62,7 +62,7 @@ curl -fsSL https://raw.githubusercontent.com/rgomes87/claude-code-statusline-rg/
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rgomes87/claude-code-statusline-rg/main/uninstall.sh | bash
+curl -fsSL https://rgomes87.github.io/claude-code-statusline-rg/uninstall.sh | bash
 ```
 
 ---
