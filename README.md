@@ -27,15 +27,59 @@ curl -fsSL https://rgomes87.github.io/claude-code-statusline-rg/install.sh | bas
 
 Then restart Claude Code. The statusline appears immediately.
 
-### What the installer does
+> Prefer to read before running? View [`install.sh`](install.sh) in this repo — it's ~30 lines of plain bash.
 
-1. Downloads `statusline.sh` → `~/.claude/statusline.sh`
-2. Downloads the `/rg-statusline-help` slash command → `~/.claude/commands/rg-statusline-help.md`
-3. Adds the `statusLine` block to `~/.claude/settings.json`
+---
 
-### Manual install
+## What gets installed
 
-If you prefer to install manually:
+Three things are placed on your machine. Nothing else is touched.
+
+| File | Location | Purpose |
+|------|----------|---------|
+| `statusline.sh` | `~/.claude/statusline.sh` | The script Claude Code runs every tick to render the status area |
+| `rg-statusline-help.md` | `~/.claude/commands/rg-statusline-help.md` | Adds the `/rg-statusline-help` slash command inside Claude Code |
+| settings patch | `~/.claude/settings.json` | Registers the script with Claude Code via the `statusLine` hook |
+
+### The settings.json change
+
+The installer adds one key to your existing `~/.claude/settings.json`. If the key already exists, it skips and warns you — it never overwrites.
+
+**Before:**
+```json
+{
+  "theme": "dark"
+}
+```
+
+**After:**
+```json
+{
+  "theme": "dark",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh"
+  }
+}
+```
+
+That's it. No background processes, no daemons, no cron jobs. The script is invoked by Claude Code itself on each render tick and exits immediately after printing.
+
+---
+
+## Uninstall
+
+```bash
+curl -fsSL https://rgomes87.github.io/claude-code-statusline-rg/uninstall.sh | bash
+```
+
+Removes the three files listed above and deletes the `statusLine` key from `settings.json`. Your settings file is otherwise untouched.
+
+---
+
+## Manual install
+
+If you prefer full control:
 
 ```bash
 # 1. Download the script
@@ -55,14 +99,6 @@ curl -fsSL https://raw.githubusercontent.com/rgomes87/claude-code-statusline-rg/
     "command": "bash ~/.claude/statusline.sh"
   }
 }
-```
-
----
-
-## Uninstall
-
-```bash
-curl -fsSL https://rgomes87.github.io/claude-code-statusline-rg/uninstall.sh | bash
 ```
 
 ---
