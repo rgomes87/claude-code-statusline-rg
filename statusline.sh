@@ -16,7 +16,7 @@ RED=$(c 196)
 GREEN=$(c 82)
 GREY=$(c 240)
 SILVER=$(c 250)
-GOLD=$(c 214)
+GOLD=$(c 220)
 
 # ── Visible-length helper (strips ANSI escape codes) ─────────────────────────
 
@@ -106,11 +106,12 @@ else
   EFFORT_LABEL=""
 fi
 
-# Model colour: Haiku → green, Sonnet → cyan, Opus → red
+# Model colour: Haiku → green, Sonnet → orange, Opus → red, Fable → gold
 case "$MODEL" in
   *[Hh]aiku*)  MODEL_COL=$GREEN ;;
   *[Ss]onnet*) MODEL_COL=$ORANGE ;;
   *[Oo]pus*)   MODEL_COL=$RED   ;;
+  *[Ff]able*)  MODEL_COL=$GOLD  ;;
   *)            MODEL_COL=$CYAN  ;;
 esac
 
